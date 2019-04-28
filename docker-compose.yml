@@ -1,0 +1,17 @@
+version: "3.3"
+services:
+  db:
+    build:
+      context: ./erd
+      dockerfile: Dockerfile.localdb
+    container_name: db
+    volumes:
+      - db-data:/var/lib/postgresql
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=job-matching
+      - POSTGRES_PASSWORD=password
+volumes:
+  db-data:
+    driver: local
