@@ -28,8 +28,8 @@ CREATE TABLE public.workers(
 	phone_number character varying(11) NOT NULL,
 	mail_address character varying NOT NULL,
 	active boolean NOT NULL,
-	created_at timestamp NOT NULL DEFAULT now(),
-	updated_at timestamp NOT NULL DEFAULT now(),
+	created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	updated_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	CONSTRAINT workers_pk PRIMARY KEY (id)
 
 );
@@ -48,8 +48,8 @@ CREATE TABLE public.clients(
 	phone_number character varying(11) NOT NULL,
 	mail_address character varying NOT NULL,
 	active boolean NOT NULL,
-	created_at timestamp NOT NULL DEFAULT now(),
-	updated_at timestamp NOT NULL DEFAULT now(),
+	created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	updated_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	CONSTRAINT clients_pk PRIMARY KEY (id)
 
 );
@@ -69,8 +69,8 @@ CREATE TABLE public.employees(
 	role character varying NOT NULL,
 	representative boolean NOT NULL,
 	active boolean NOT NULL,
-	created_at timestamp NOT NULL DEFAULT now(),
-	updated_at timestamp NOT NULL DEFAULT now(),
+	created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	updated_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	CONSTRAINT employees_pk PRIMARY KEY (id)
 
 );
@@ -84,8 +84,8 @@ CREATE TABLE public.job_categories(
 	id bigserial NOT NULL,
 	title character varying NOT NULL,
 	active boolean NOT NULL,
-	created_at timestamp NOT NULL DEFAULT now(),
-	updated_at timestamp NOT NULL DEFAULT now(),
+	created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	updated_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	CONSTRAINT job_categories_pk PRIMARY KEY (id)
 
 );
@@ -122,8 +122,8 @@ CREATE TABLE public.job_details(
 	prerequisite character varying NOT NULL,
 	welcome_condition character varying,
 	gift character varying,
-	created_at timestamp NOT NULL DEFAULT now(),
-	updated_at timestamp NOT NULL DEFAULT now(),
+	created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	updated_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	CONSTRAINT job_details_pk PRIMARY KEY (job_id)
 
 );
@@ -137,8 +137,8 @@ CREATE TABLE public.tags(
 	id bigserial NOT NULL,
 	title character varying NOT NULL,
 	active boolean NOT NULL,
-	created_at timestamp NOT NULL DEFAULT now(),
-	updated_at timestamp NOT NULL DEFAULT now(),
+	created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	updated_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	CONSTRAINT tags_pk PRIMARY KEY (id)
 
 );
@@ -152,8 +152,8 @@ CREATE TABLE public.tag_job_idxs(
 	id bigserial NOT NULL,
 	tag_id bigint NOT NULL,
 	job_id bigint NOT NULL,
-	created_at timestamp NOT NULL DEFAULT now(),
-	updated_at timestamp NOT NULL DEFAULT now(),
+	created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	updated_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	CONSTRAINT tag_job_idxs_pk PRIMARY KEY (id)
 
 );
@@ -167,8 +167,8 @@ CREATE TABLE public.worker_likes(
 	id bigserial NOT NULL,
 	worker_id bigint NOT NULL,
 	job_id bigint NOT NULL,
-	created_at timestamp NOT NULL DEFAULT now(),
-	updated_at timestamp NOT NULL DEFAULT now(),
+	created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	updated_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	CONSTRAINT worker_likes_pk PRIMARY KEY (id)
 
 );
@@ -182,8 +182,8 @@ CREATE TABLE public.worker_helps(
 	id bigserial NOT NULL,
 	worker_id bigint NOT NULL,
 	job_id bigint NOT NULL,
-	created_at timestamp NOT NULL DEFAULT now(),
-	updated_at timestamp NOT NULL DEFAULT now(),
+	created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	updated_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	CONSTRAINT worker_helps_pk PRIMARY KEY (id)
 
 );
