@@ -1,0 +1,40 @@
+{
+  "jobs": [
+    {
+      "id": "1",
+      "categoryId": "12",
+      "title": "案件タイトル",
+      "summary": "案件の概要文…",
+      "place": "東京都茅場町…",
+      "startTime": "0900",
+      "endTime": "1900",
+      "price": "1000",
+      "isHoliday": true,
+      "photo": "/sample/photo/path.jpg"
+    },
+    {
+      "id": "2",
+      "categoryId": "13",
+      "title": "案件タイトル2",
+      "summary": "案件の概要文…",
+      "place": "東京都茅場町…",
+      "startTime": "0900",
+      "endTime": "1900",
+      "price": "1000",
+      "isHoliday": true,
+      "photo": "/sample/photo/path.jpg"
+    },
+    {
+      "id": "3",
+      "categoryId": "13",
+      "title": "案件タイトル3",
+      "summary": "案件の概要文…",
+      "place": "東京都茅場町…",
+      "startTime": "0900",
+      "endTime": "1900",
+      "price": "1000",
+      "isHoliday": true,
+      "photo": "/sample/photo/path.jpg"
+    }
+  ]
+}
