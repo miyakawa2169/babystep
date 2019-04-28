@@ -28,8 +28,8 @@ CREATE TABLE public.workers(
 	phone_number character varying(11) NOT NULL,
 	mail_address character varying NOT NULL,
 	active boolean NOT NULL,
-	created_at timestamp NOT NULL,
-	updated_at timestamp NOT NULL,
+	created_at timestamp NOT NULL DEFAULT now(),
+	updated_at timestamp NOT NULL DEFAULT now(),
 	CONSTRAINT workers_pk PRIMARY KEY (id)
 
 );
@@ -48,8 +48,8 @@ CREATE TABLE public.clients(
 	phone_number character varying(11) NOT NULL,
 	mail_address character varying NOT NULL,
 	active boolean NOT NULL,
-	created_at timestamp NOT NULL,
-	updated_at timestamp NOT NULL,
+	created_at timestamp NOT NULL DEFAULT now(),
+	updated_at timestamp NOT NULL DEFAULT now(),
 	CONSTRAINT clients_pk PRIMARY KEY (id)
 
 );
@@ -69,8 +69,8 @@ CREATE TABLE public.employees(
 	role character varying NOT NULL,
 	representative boolean NOT NULL,
 	active boolean NOT NULL,
-	created_at timestamp NOT NULL,
-	updated_at timestamp NOT NULL,
+	created_at timestamp NOT NULL DEFAULT now(),
+	updated_at timestamp NOT NULL DEFAULT now(),
 	CONSTRAINT employees_pk PRIMARY KEY (id)
 
 );
@@ -78,19 +78,19 @@ CREATE TABLE public.employees(
 ALTER TABLE public.employees OWNER TO postgres;
 -- ddl-end --
 
--- object: public.job_categorys | type: TABLE --
--- DROP TABLE IF EXISTS public.job_categorys CASCADE;
-CREATE TABLE public.job_categorys(
+-- object: public.job_categories | type: TABLE --
+-- DROP TABLE IF EXISTS public.job_categories CASCADE;
+CREATE TABLE public.job_categories(
 	id bigserial NOT NULL,
 	title character varying NOT NULL,
 	active boolean NOT NULL,
-	created_at timestamp NOT NULL,
-	updated_at timestamp NOT NULL,
-	CONSTRAINT job_categorys_pk PRIMARY KEY (id)
+	created_at timestamp NOT NULL DEFAULT now(),
+	updated_at timestamp NOT NULL DEFAULT now(),
+	CONSTRAINT job_categories_pk PRIMARY KEY (id)
 
 );
 -- ddl-end --
-ALTER TABLE public.job_categorys OWNER TO postgres;
+ALTER TABLE public.job_categories OWNER TO postgres;
 -- ddl-end --
 
 -- object: public.jobs | type: TABLE --
@@ -104,8 +104,8 @@ CREATE TABLE public.jobs(
 	desire_date_time character varying NOT NULL,
 	place character varying NOT NULL,
 	active boolean NOT NULL,
-	created_at timestamp NOT NULL,
-	updated_at timestamp NOT NULL,
+	created_at timestamp NOT NULL DEFAULT now(),
+	updated_at timestamp NOT NULL DEFAULT now(),
 	CONSTRAINT jobs_pk PRIMARY KEY (id)
 
 );
@@ -122,8 +122,8 @@ CREATE TABLE public.job_details(
 	prerequisite character varying NOT NULL,
 	welcome_condition character varying,
 	gift character varying,
-	created_at timestamp NOT NULL,
-	updated_at timestamp NOT NULL,
+	created_at timestamp NOT NULL DEFAULT now(),
+	updated_at timestamp NOT NULL DEFAULT now(),
 	CONSTRAINT job_details_pk PRIMARY KEY (job_id)
 
 );
@@ -137,8 +137,8 @@ CREATE TABLE public.tags(
 	id bigserial NOT NULL,
 	title character varying NOT NULL,
 	active boolean NOT NULL,
-	created_at timestamp NOT NULL,
-	updated_at timestamp NOT NULL,
+	created_at timestamp NOT NULL DEFAULT now(),
+	updated_at timestamp NOT NULL DEFAULT now(),
 	CONSTRAINT tags_pk PRIMARY KEY (id)
 
 );
@@ -152,8 +152,8 @@ CREATE TABLE public.tag_job_idxs(
 	id bigserial NOT NULL,
 	tag_id bigint NOT NULL,
 	job_id bigint NOT NULL,
-	created_at timestamp NOT NULL,
-	updated_at timestamp NOT NULL,
+	created_at timestamp NOT NULL DEFAULT now(),
+	updated_at timestamp NOT NULL DEFAULT now(),
 	CONSTRAINT tag_job_idxs_pk PRIMARY KEY (id)
 
 );
@@ -167,8 +167,8 @@ CREATE TABLE public.worker_likes(
 	id bigserial NOT NULL,
 	worker_id bigint NOT NULL,
 	job_id bigint NOT NULL,
-	created_at timestamp NOT NULL,
-	updated_at timestamp NOT NULL,
+	created_at timestamp NOT NULL DEFAULT now(),
+	updated_at timestamp NOT NULL DEFAULT now(),
 	CONSTRAINT worker_likes_pk PRIMARY KEY (id)
 
 );
@@ -182,8 +182,8 @@ CREATE TABLE public.worker_helps(
 	id bigserial NOT NULL,
 	worker_id bigint NOT NULL,
 	job_id bigint NOT NULL,
-	created_at timestamp NOT NULL,
-	updated_at timestamp NOT NULL,
+	created_at timestamp NOT NULL DEFAULT now(),
+	updated_at timestamp NOT NULL DEFAULT now(),
 	CONSTRAINT worker_helps_pk PRIMARY KEY (id)
 
 );
@@ -201,7 +201,7 @@ ON DELETE RESTRICT ON UPDATE CASCADE;
 -- object: job_category_id_fk | type: CONSTRAINT --
 -- ALTER TABLE public.jobs DROP CONSTRAINT IF EXISTS job_category_id_fk CASCADE;
 ALTER TABLE public.jobs ADD CONSTRAINT job_category_id_fk FOREIGN KEY (job_category_id)
-REFERENCES public.job_categorys (id) MATCH FULL
+REFERENCES public.job_categories (id) MATCH FULL
 ON DELETE RESTRICT ON UPDATE CASCADE;
 -- ddl-end --
 
