@@ -50,4 +50,11 @@ data class Tag @AutomapConstructor constructor(
         val title: String
 )
 
+data class ApplyJobParams @AutomapConstructor constructor(
+        val workerId: Long,
+        val jobId: Long
+)
 
+data class ApplyCheck @AutomapConstructor constructor(
+        val id: Long
+)

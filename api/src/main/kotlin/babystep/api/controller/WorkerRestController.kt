@@ -1,9 +1,6 @@
 package babystep.api.controller
 
-import babystep.api.model.FindJobsSearchCondition
-import babystep.api.model.FindJobsSearchResult
-import babystep.api.model.GetJobDetailSearchCondition
-import babystep.api.model.GetJobDetailSearchResult
+import babystep.api.model.*
 import babystep.api.service.WorkerService
 import org.springframework.web.bind.annotation.*
 
@@ -13,6 +10,7 @@ class WorkerRestController(
         private val service: WorkerService
 ) {
 
+    // 求人一覧取得API
     @GetMapping("/jobs")
     fun findJobs(
             @RequestParam(name = "workerId", required = true) workerId: Long,
@@ -29,6 +27,7 @@ class WorkerRestController(
         return service.findJobs(condition)
     }
 
+    // 求人詳細取得API
     @GetMapping("/jobs/{jobId}")
     fun getJobDetail(
             @RequestParam(name = "workerId", required = true) workerId: Long,
@@ -41,4 +40,20 @@ class WorkerRestController(
         return service.getJobDetail(condition)
     }
 
+    // 求人応募更新API
+    @PatchMapping("/jobs/applyStatusChange")
+    fun applyStatusChange(
+            @RequestParam(name = "workerId", required = true) workerId: Long,
+            @RequestParam(name = "jobId", required = true) jobId: Long //TODO requestBody変更
+    ){
+        val param = ApplyJobParams(
+                workerId = workerId,
+                jobId = jobId
+        )
+        service.applyStatusChange(param)
+    }
+
+//    data class applyStatusChangeRequest(
+//            val jobId: Long
+//    )
 }

@@ -1,9 +1,6 @@
 package babystep.api.repository
 
-import babystep.api.model.FindJobsSearchCondition
-import babystep.api.model.FindJobsSearchResult
-import babystep.api.model.GetJobDetailSearchCondition
-import babystep.api.model.GetJobDetailSearchResult
+import babystep.api.model.*
 import org.springframework.stereotype.Repository
 
 @Repository
@@ -13,4 +10,9 @@ interface WorkerRepository {
 
     fun getJobDetail(condition: GetJobDetailSearchCondition): GetJobDetailSearchResult
 
+    fun jobApplyStatusCheck(params: ApplyJobParams): List<ApplyCheck> //TODO mybatisはnullではなく、emptyListを返却してる模様
+
+    fun applyJob(params: ApplyJobParams): Long
+
+    fun cancelAppliedJob(params: ApplyJobParams): Long
 }

@@ -17,6 +17,9 @@
         <!--            <result property="title" column="tag_title"/>-->
         <!--        </collection>-->
     </resultMap>
+    <resultMap id="applyCheck" type="babystep.api.model.ApplyCheck">
+        <id column="id"/>
+    </resultMap>
     <select id="findJobs" parameterType="babystep.api.model.FindJobsSearchCondition" resultMap="jobsResult">
     <!--一覧検索SQL-->
         SELECT
@@ -111,4 +114,34 @@
                 AND j.id = #{jobId}
     </select>
 
+    <select id="jobApplyStatusCheck" parameterType="babystep.api.model.ApplyJobParams" resultMap="applyCheck">
+        SELECT
+            wh.id
+        FROM
+            worker_helps wh
+        WHERE
+            worker_id = #{workerId}
+                AND job_id = #{jobId}
+    </select>
+
+    <insert id="applyJob" parameterType="babystep.api.model.ApplyJobParams">
+        INSERT INTO worker_helps
+            (
+                worker_id,
+                job_id
+            )
+        VALUES
+            (
+                #{workerId},
+                #{jobId}
+            );
+    </insert>
+
+    <delete id="cancelAppliedJob" parameterType="babystep.api.model.ApplyJobParams">
+        DELETE FROM worker_helps
+        WHERE
+            worker_id = #{workerId}
+                AND job_id = #{jobId}
+        ;
+    </delete>
 </mapper>

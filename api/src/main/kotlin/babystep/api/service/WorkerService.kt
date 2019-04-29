@@ -1,9 +1,6 @@
 package babystep.api.service
 
-import babystep.api.model.FindJobsSearchCondition
-import babystep.api.model.FindJobsSearchResult
-import babystep.api.model.GetJobDetailSearchCondition
-import babystep.api.model.GetJobDetailSearchResult
+import babystep.api.model.*
 import babystep.api.repository.WorkerRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -22,4 +19,16 @@ class WorkerService(
         return repository.getJobDetail(condition)
     }
 
+    fun applyStatusChange(params: ApplyJobParams){
+        // 求人応募されていたら、応募キャンセルに変更
+        val checkResult = repository.jobApplyStatusCheck(params)
+        if (checkResult.isNotEmpty()) {
+            println("cancel")
+            repository.cancelAppliedJob(params)
+        // 求人応募されていなかったら、応募する
+        } else if (checkResult.isEmpty()) {
+            println("apply")
+            repository.applyJob(params)
+        }
+    }
 }
