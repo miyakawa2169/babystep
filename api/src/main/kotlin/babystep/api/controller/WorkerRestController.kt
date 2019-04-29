@@ -2,11 +2,10 @@ package babystep.api.controller
 
 import babystep.api.model.FindJobsSearchCondition
 import babystep.api.model.FindJobsSearchResult
+import babystep.api.model.GetJobDetailSearchCondition
+import babystep.api.model.GetJobDetailSearchResult
 import babystep.api.service.WorkerService
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RequestParam
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/worker")
@@ -28,6 +27,18 @@ class WorkerRestController(
                 tagIds = tagIds
         )
         return service.findJobs(condition)
+    }
+
+    @GetMapping("/jobs/{jobId}")
+    fun getJobDetail(
+            @RequestParam(name = "workerId", required = true) workerId: Long,
+            @PathVariable("jobId") jobId: Long
+    ): GetJobDetailSearchResult {
+        val condition = GetJobDetailSearchCondition(
+                workerId = workerId,
+                jobId = jobId
+        )
+        return service.getJobDetail(condition)
     }
 
 }
