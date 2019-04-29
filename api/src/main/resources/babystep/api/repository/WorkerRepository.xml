@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="babystep.api.repository.WorkerRepository">
+    <resultMap id="jobsResult" type="babystep.api.model.FindJobsSearchResult">
+        <id column="id"/>
+<!--        <collection property="tags" ofType="babystep.api.model.Tag">-->
+<!--            <id property="id" column="tag_id"/>-->
+<!--            <result property="title" column="tag_title"/>-->
+<!--        </collection>-->
+    </resultMap>
+    <select id="findJobs" parameterType="babystep.api.model.FindJobsSearchCondition" resultMap="jobsResult">
+    <!--一覧検索SQL-->
+        SELECT
+            j.id,
+            j.job_category_id,
+            jc.title AS job_category_title,
+            j.title AS job_title,
+            j.description,
+            j.desire_date_time,
+            j.place,
+<!--            tji.tag_id,-->
+<!--            t.title AS tag_title,-->
+            CASE
+                WHEN wl.job_id IS NOT NULL THEN TRUE
+                ELSE FALSE
+            END AS LIKE_FLG,
+            CASE
+                WHEN wh.job_id IS NOT NULL THEN TRUE
+                ELSE FALSE
+            END AS HELP_FLG
+        FROM
+            jobs j
+            INNER JOIN job_categories jc
+                ON j.job_category_id = jc.id
+                AND jc.active = TRUE
+        <!--カテゴリ検索-->
+<!--        AND jc.id = :job_category_id-->
+            LEFT OUTER JOIN worker_likes wl
+                ON j.id = wl.job_id
+                    AND wl.worker_id = #{workerId}
+            LEFT OUTER JOIN worker_helps wh
+                ON j.id = wh.job_id
+                    AND wh.worker_id = #{workerId}
+            LEFT OUTER JOIN tag_job_idxs tji
+                ON j.id = tji.job_id
+            <!--タグ検索-->
+<!--        AND tji.tag_id IN (1,2,3,4,5,6)-->
+            LEFT OUTER JOIN tags t
+                ON tji.tag_id = t.id
+                    AND t.active = TRUE
+        WHERE
+            j.active = TRUE
+        <!--キーワード検索-->
+<!--        AND ( j.title LIKE '%ガラス%'-->
+<!--        OR j.description LIKE '%ガラス%' )-->
+        ORDER BY
+            j.updated_at DESC
+    </select>
+</mapper>
