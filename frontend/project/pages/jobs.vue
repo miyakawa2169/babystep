@@ -1,11 +1,11 @@
 <template lang="pug">
   v-layout
-    v-flex(xs12 sm8 offset-sm2)
-      v-card(v-for="job in sampleJobs.jobs")
+    v-flex(xs12 sm12)
+      v-card.ma-5(v-for="job in sampleJobs.jobs")
         .category {{job.categoryName}}
         v-card-title
           div
-            h3.headline.mb-0 {{job.title}}
+            h3.headline {{job.title}}
         .summary {{job.summary}}
         .job-information
           span.title 希望時間帯：{{job.desireDateTime}}
