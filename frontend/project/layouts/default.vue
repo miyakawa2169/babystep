@@ -46,13 +46,13 @@ export default {
       items: [
         {
           icon: 'apps',
-          title: 'TOP',
-          to: '/top'
+          title: 'JOBs',
+          to: '/jobs'
         },
         {
           icon: 'bubble_chart',
-          title: 'Inspire',
-          to: '/inspire'
+          title: 'sample',
+          to: '/sample'
         }
       ],
       miniVariant: false,
