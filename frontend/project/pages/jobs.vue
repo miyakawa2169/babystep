@@ -1,6 +1,6 @@
 <template lang="pug">
   v-layout
-    v-flex(xs12 sm6 offset-sm3)
+    v-flex(xs12 sm8 offset-sm2)
       v-card(v-for="job in sampleJobs.jobs")
         .category {{job.categoryName}}
         v-card-title
