@@ -1,37 +1,51 @@
 <template lang="pug">
   v-app
-    v-navigation-drawer(
-      v-model="drawer"
-      :mini-variant="miniVariant"
-      :clipped="clipped"
-      fixed
-      app
-    )
-      v-list
-        v-list-tile(
-          v-for="(item, i) in items"
-          :key="i"
-          :to="item.to"
-          router
-          exact
-        )
-          v-list-tile-action
-            v-icon {{ item.icon }}
-          v-list-tile-content
-            v-list-tile-title(v-text="item.title")
-    v-toolbar(:clipped-left="clipped" fixed app)
-      v-toolbar-side-icon(@click="drawer = !drawer")
-      v-btn(icon @click.stop="miniVariant = !miniVariant")
-        v-icon {{ `chevron_${miniVariant ? 'right' : 'left'}` }}
-      v-btn(icon @click.stop="clipped = !clipped")
-        v-icon web
-      v-btn(icon @click.stop="fixed = !fixed")
-        v-icon(remove)
-      v-toolbar-title(v-text="title")
+    v-toolbar
+      v-icon.hidden-md-and-up more_vert
+      v-toolbar-title babystep
       v-spacer
-    v-content
-      v-container
-        nuxt
+      v-toolbar-items
+        v-btn(flat) 案件一覧
+        v-btn(flat) マイページ
+        v-btn(flat) ログアウト
+    v-layout
+      v-card.hidden-sm-and-down(width="30%")
+        v-text-field(label="検索キーワード")
+        v-btn(color="info") search
+
+        v-select(:items="items" label="カテゴリ" outline)
+
+        v-chip(label) タグ１
+        v-chip(outline) タグ２
+        v-chip(selected) タグ３
+        v-chip(small) タグ４
+        v-chip(text-color="orange") タグ５
+        v-chip(small color="primary") タグ6
+        v-chip(small color="secondary") タグ7
+        v-chip(small color="green") タグ8
+        v-chip(small color="#aaaaaa") タグ9
+
+        v-list
+          v-divider
+          v-list-tile-content コンテンツ
+            v-list-tile(ripple) タイル
+          v-list-tile-action アクション
+            v-icon star_border
+          v-divider
+          v-list-tile タイル
+          v-list-tile-content コンテンツ
+          v-list-tile-action アクション
+            v-icon star_border
+          v-divider
+          v-list-tile タイル
+          v-list-tile-content コンテンツ
+          v-list-tile-action アクション
+            v-icon star_border
+          v-divider
+
+      v-content
+        v-container
+          nuxt
     v-footer.footer(:fixed="fixed" app)
       span &copy; 2019 babystep
 </template>
@@ -40,25 +54,7 @@
 export default {
   data() {
     return {
-      clipped: false,
-      drawer: false,
-      fixed: false,
-      items: [
-        {
-          icon: 'apps',
-          title: 'TOP',
-          to: '/top'
-        },
-        {
-          icon: 'bubble_chart',
-          title: 'Inspire',
-          to: '/inspire'
-        }
-      ],
-      miniVariant: false,
-      right: true,
-      rightDrawer: false,
-      title: 'babystep'
+      items: ['農業', 'IT', 'エンタメ', 'サービス']
     }
   }
 }
