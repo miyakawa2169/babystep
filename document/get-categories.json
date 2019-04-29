@@ -1,0 +1,19 @@
+{
+  "categories": [
+    {
+      "id": "81",
+      "name": "農業",
+      "registrationNumber": "123"
+    },
+    {
+      "id": "82",
+      "name": "IT",
+      "registrationNumber": "13"
+    },
+    {
+      "id": "83",
+      "name": "介護",
+      "registrationNumber": "12"
+    }
+  ]
+}
