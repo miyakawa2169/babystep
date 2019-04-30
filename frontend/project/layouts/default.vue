@@ -5,7 +5,8 @@
       v-toolbar-title babystep
       v-spacer
       v-toolbar-items
-        v-btn(flat) 案件一覧
+        v-btn(flat @click="goPage('/registration')") 案件登録
+        v-btn(flat @click="goPage('/jobs')") 案件一覧
         v-btn(flat) マイページ
         v-btn(flat) ログアウト
     v-layout
@@ -55,6 +56,11 @@ export default {
   data() {
     return {
       items: ['農業', 'IT', 'エンタメ', 'サービス']
+    }
+  },
+  methods: {
+    goPage(to) {
+      this.$router.push(to)
     }
   }
 }
