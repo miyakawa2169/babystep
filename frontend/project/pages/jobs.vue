@@ -1,7 +1,7 @@
 <template lang="pug">
   v-layout
     v-flex(xs12 sm12)
-      v-card.ma-5(v-for="job in sampleJobs.jobs")
+      v-card.ma-5(v-for="job in jobs")
         .category {{job.categoryName}}
         v-card-title
           div
@@ -21,8 +21,14 @@
 <script>
 import { mapActions } from 'vuex'
 export default {
+  data() {
+    return {
+    }
+  },
   computed: {
-    sampleJobs() { return this.$store.state.jobs.sampleJobs }
+    sampleJobs() { return this.$store.state.jobs.sampleJobs },
+    jobs() { return this.$store.state.jobs.jobs }
+
   },
   created() {
     this.fetchJobs()
