@@ -24,10 +24,37 @@ data class FindJobsSearchResult @AutomapConstructor constructor(
         val helpFlg: Boolean
 )
 
-//
+data class GetJobDetailSearchCondition @AutomapConstructor constructor(
+        val workerId: Long,
+        val jobId: Long
+)
+
+data class GetJobDetailSearchResult @AutomapConstructor constructor(
+        val id: Long,
+        val jobCategoryId: Long,
+        val jobCategoryTitle: String,
+        val jobTitle: String,
+        val description: String,
+        val desireDateTime: String,
+        val prerequisite: String,
+        val welcome_condition: String,
+        val gift: String,
+        val place: String,
+//        val tags: List<Tag>?, TODO　Mybatisから取得できるように修正
+        val likeFlg: Boolean,
+        val helpFlg: Boolean
+)
+
 data class Tag @AutomapConstructor constructor(
         val id: Long,
         val title: String
 )
 
+data class ApplyJobParams @AutomapConstructor constructor(
+        val workerId: Long,
+        val jobId: Long
+)
 
+data class ApplyCheck @AutomapConstructor constructor(
+        val id: Long
+)
