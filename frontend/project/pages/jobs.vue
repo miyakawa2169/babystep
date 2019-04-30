@@ -19,11 +19,18 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
   computed: {
     sampleJobs() { return this.$store.state.jobs.sampleJobs }
   },
+  created() {
+    this.fetchJobs()
+  },
   methods: {
+    ...mapActions({
+      fetchJobs: 'jobs/fetchJobs'
+    }),
     goDetail(id) { this.$router.push('/job?id=' + id) }
   }
 }

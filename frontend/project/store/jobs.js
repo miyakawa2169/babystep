@@ -38,3 +38,21 @@ export const state = () => ({
     ]
   }
 })
+
+/** 案件のアクション */
+export const actions = {
+  async fetchJobs({ commit }) {
+    const response = await this.$axios.$get('http://localhost:8080/worker/jobs?workerId=1')
+    console.log('%c response :', 'background-color:lightgray', response)
+    console.log('%c this.$axios :', 'background-color:lightyellow', this.$axios)
+    commit('jobs', response.data)
+  }
+}
+
+/** 案件のミューテーション */
+export const mutations = {
+  jobs(state, jobs) {
+    console.log('%c jobs :', 'background-color:lightgreen', jobs)
+    state.jobs = jobs
+  }
+}

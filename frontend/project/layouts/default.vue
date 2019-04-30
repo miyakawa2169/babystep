@@ -46,7 +46,7 @@
       v-content
         v-container
           nuxt
-    v-footer.footer(:fixed="fixed" app)
+    v-footer.footer(:fixed="true" app)
       span &copy; 2019 babystep
 </template>
 
