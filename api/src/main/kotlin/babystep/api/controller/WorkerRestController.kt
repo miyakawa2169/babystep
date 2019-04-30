@@ -3,10 +3,7 @@ package babystep.api.controller
 import babystep.api.model.FindJobsSearchCondition
 import babystep.api.model.FindJobsSearchResult
 import babystep.api.service.WorkerService
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RequestParam
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/worker")
@@ -14,6 +11,7 @@ class WorkerRestController(
         private val service: WorkerService
 ) {
 
+    @CrossOrigin
     @GetMapping("/jobs")
     fun findJobs(
             @RequestParam(name = "workerId", required = true) workerId: Long,
