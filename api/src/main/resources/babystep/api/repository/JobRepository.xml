@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="babystep.api.repository.JobRepository">
+
+    <select id="getNewestJobId" parameterType="Long" resultType="Long">
+        SELECT
+            MAX(j.id)
+        FROM
+            jobs j
+        WHERE
+            j.clientId = #{clientId}
+    </select>
+
+    <insert id="registerJob" parameterType="babystep.api.model.Job">
+        INSERT INTO jobs
+            (
+                job_category_id,
+                client_id,
+                title,
+                description,
+                desire_date_time,
+                place,
+                active
+            )
+        VALUES
+            (
+                #{jobCategoryId},
+                #{clientId},
+                #{title},
+                #{description},
+                #{desireDateTime},
+                #{place},
+                TRUE
+            );
+    </insert>
+
+    <insert id="registerJobDetail" parameterType="babystep.api.model.JobDetail">
+        INSERT INTO job_details
+            (
+                job_id,
+                description,
+                desire_date_time,
+                prerequisite,
+                welcome_condition,
+                gift
+            )
+        VALUES
+            (
+                #{jobId},
+                #{description},
+                #{desireDateTime},
+                #{prerequisite},
+                #{welcomeCondition},
+                #{gift}
+            );
+    </insert>
+
+</mapper>
